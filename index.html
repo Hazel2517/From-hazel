@@ -1,0 +1,154 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy New Year Butterfly</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      color: white;
+      font-family: 'Georgia', sans-serif;
+      font-size: 1.50rem;
+      text-align: center;
+      margin-bottom: 20px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .text-container {
+      position: relative;
+      color: #ffd700;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.80rem; /* Adjusted font size */
+      line-height: 1.5;
+      text-align: center;
+      max-width: 80%;
+    }
+
+    .text-line {
+      opacity: 0;
+      animation: fadeInLine 0.6s ease-in-out forwards;
+    }
+
+    .emoji-container {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: calc(1px + 1vmin);
+      animation: moveUp 8s linear infinite;
+      opacity: 0.6;
+    }
+
+    @keyframes moveUp {
+      0% {
+        transform: translateY(100vh);
+      }
+      100% {
+        transform: translateY(-10vh);
+      }
+    }
+
+    @keyframes fadeInLine {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>HAPPY New Year Butterfly! 🎉</h1>
+
+  <div class="text-container" id="textContainer"></div>
+
+  <div class="emoji-container" id="emojiContainer"></div>
+
+  <script>
+    // Ensure the DOM is loaded before executing the code
+    document.addEventListener("DOMContentLoaded", function() {
+      const emojis = ["💘", "🥳", "🎂", "🦋", "🌹", "❣️", "❤️", "🌸", "💮", "🌺", "🌼", "🌷", "💓", "💞", "💗"];
+      const emojiContainer = document.getElementById("emojiContainer");
+      const textContainer = document.getElementById("textContainer");
+
+      const lines = [
+        "May this year brings you a lot of happiness, success and guidance to fullfil all your dreams,May this year be one of the best for you ,you're the best ,the bestest ,so u deserve the bestest year and a bestest life        ............",
+        
+        "i wish we could stay togethar this year too.I don know why but ...Once i told u .U have THE PEN ,whatever u writei have to read,please keya tum hum dono ko sath ni likh sakti ,please,U give me all the happiness of the world.please give me my biggest happiness too 🥺",
+        "i know i'm little crazy,a little bit psycho but i'm all yours once you said ,Mahnoor you don't belong to me,no no, Nawal im all yours,every inch of me ,everything of mine ,even all my thoughts they all belong to you",
+        "Ah it's ohk im a little bit emotional too ohk not just a little,im too much,but only when it's comes to you 🤭",
+        "Today is not for these things.It's just make me sad that it's already January. Time flies fast.",
+        "I wish I could stop it here forever. I just don't want to let you go.",
+        "But...ok ok, I'm emotional, you know 🤭",
+        "Well, happiest new year, enjoy this year as much as you can.",
+        "Wishing you the best of luck ❣️"
+      ];
+
+      let currentIndex = 0;
+
+      // Function to create emoji falling animation
+      function createEmoji() {
+        const emojiElement = document.createElement("div");
+        emojiElement.classList.add("emoji");
+        emojiElement.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        emojiElement.style.left = Math.random() * 100 + "vw";
+        emojiElement.style.fontSize = Math.random() * 30 + 20 + "px";
+        emojiElement.style.animationDuration = Math.random() * 3 + 5 + "s";
+        emojiContainer.appendChild(emojiElement);
+
+        // Remove emoji after animation ends
+        setTimeout(() => {
+          emojiContainer.removeChild(emojiElement);
+        }, 8000);
+      }
+
+      // Function to show each line of text with animation
+      function showNextLine() {
+        if (currentIndex < lines.length) {
+          const lineElement = document.createElement("div");
+          lineElement.classList.add("text-line");
+          lineElement.style.animationDelay = currentIndex * 3 + "s";
+          lineElement.innerText = lines[currentIndex];
+          textContainer.appendChild(lineElement);
+          currentIndex++;
+        }
+      }
+
+      // Start creating emojis every 300ms
+      setInterval(createEmoji, 300);
+
+      // Show the lines of text with delays
+      lines.forEach((line, index) => {
+        setTimeout(showNextLine, index * 3000);
+      });
+    });
+  </script>
+</body>
+</html>
